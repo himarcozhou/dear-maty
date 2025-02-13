@@ -1,0 +1,120 @@
+#envelope {
+  margin: 150px auto;
+  position: relative;
+  width: 280px;
+  height: 180px;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  background-color: #f9c5c8;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.flap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 140px solid transparent;
+  border-right: 140px solid transparent;
+  border-top: 98px solid #ff3333;
+  border-bottom: 82px solid transparent;
+  transform-origin: top;
+  transition: transform 0.4s ease;
+  z-index: 1;
+}
+
+.pocket {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 0;
+  border-left: 140px solid #ff9999;
+  border-right: 140px solid #ff9999;
+  border-bottom: 90px solid #fd8787;
+  border-top: 90px solid transparent;
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  z-index: 4;
+}
+
+.letter {
+  position: absolute;
+  background-color: #f9c5c8;
+  width: 90%;
+  left: 5%;
+  height: 90%;
+  top: 5%;
+  border-radius: 6px;
+  box-shadow: 0 2px 26px rgba(0, 0, 0, 0.12);
+  transition: all 0.8s ease;
+  z-index: 1;
+  cursor: pointer;
+}
+
+.open .flap {
+  transform: rotateX(180deg);
+}
+
+.open .letter {
+  transform: translateY(-60px);
+  z-index: 4;
+  transition-delay: 0.4s;
+}
+
+.expanded .letter {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90vw;
+  height: 90vh;
+  max-width: 800px;
+  z-index: 1000;
+  transition: all 0.6s ease;
+  transition-delay: 0s;
+  cursor: auto;
+}
+
+.expanded #envelope .pocket,
+.expanded #envelope .flap {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.close-button {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1001;
+  padding: 10px 20px;
+  background-color: #ff3333;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+  background-color: #ff5555;
+}
+
+/* Add some styling for the letter content when expanded */
+.expanded .letter .words {
+  background-color: transparent;
+  border-radius: 0;
+}
+
+/* Add an overlay when the letter is expanded */
+.expanded::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 999;
+}

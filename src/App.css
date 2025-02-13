@@ -1,5 +1,20 @@
+body {
+  background-color: #ff746c;
+  font-family: "Roboto", serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+.App {
+  min-height: 100vh; /* Make App div take full viewport height */
+  display: flex;
+  align-items: center; /* Center vertically */
+  justify-content: center; /* Center horizontally */
+}
+
 #envelope {
-  margin: 150px auto;
+  margin: 100px auto;
   position: relative;
   width: 280px;
   height: 180px;
@@ -7,6 +22,10 @@
   border-bottom-right-radius: 6px;
   background-color: #f9c5c8;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+#envelope:hover {
+  box-shadow: 0 4px 50px 6px rgba(0, 0, 0, 0.3);
 }
 
 .flap {
@@ -17,7 +36,7 @@
   height: 0;
   border-left: 140px solid transparent;
   border-right: 140px solid transparent;
-  border-top: 98px solid #ff3333;
+  border-top: 98px solid #cd4343;
   border-bottom: 82px solid transparent;
   transform-origin: top;
   transition: transform 0.4s ease;
@@ -30,18 +49,20 @@
   left: 0;
   width: 0;
   height: 0;
-  border-left: 140px solid #ff9999;
-  border-right: 140px solid #ff9999;
-  border-bottom: 90px solid #fd8787;
+  border-left: 140px solid #ffcfcf;
+  border-right: 140px solid #ffcfcf;
+  border-bottom: 90px solid #ff9999;
   border-top: 90px solid transparent;
   border-bottom-left-radius: 6px;
   border-bottom-right-radius: 6px;
   z-index: 4;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .letter {
   position: absolute;
-  background-color: #f9c5c8;
+  background-color: #f6eee3;
   width: 90%;
   left: 5%;
   height: 90%;
@@ -51,6 +72,17 @@
   transition: all 0.8s ease;
   z-index: 1;
   cursor: pointer;
+  overflow: scroll;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.letter-container {
+  padding: 20px;
+  height: 100%;
+  overflow-y: auto;
+  box-sizing: border-box;
+  -webkit-overflow-scrolling: touch;
 }
 
 .open .flap {
@@ -65,16 +97,20 @@
 
 .expanded .letter {
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 90vw;
-  height: 90vh;
-  max-width: 800px;
+  top: 0;
+  left: 0;
+  transform: none;
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 0;
   z-index: 1000;
   transition: all 0.6s ease;
   transition-delay: 0s;
   cursor: auto;
+  -webkit-user-select: text;
+  user-select: text;
 }
 
 .expanded #envelope .pocket,
@@ -85,31 +121,30 @@
 
 .close-button {
   position: fixed;
-  top: 20px;
-  right: 20px;
+  top: 10px;
+  right: 10px;
   z-index: 1001;
-  padding: 10px 20px;
-  background-color: #ff3333;
+  padding: 8px 16px;
+  background-color: #ff746c;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-size: 14px;
 }
 
 .close-button:hover {
   background-color: #ff5555;
 }
 
-/* Add some styling for the letter content when expanded */
 .expanded .letter .words {
   background-color: transparent;
   border-radius: 0;
 }
 
-/* Add an overlay when the letter is expanded */
 .expanded::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
@@ -117,4 +152,70 @@
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.5);
   z-index: 999;
+}
+
+.fake-letter {
+  text-align: center;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.real-letter {
+  padding: 15px;
+  font-size: 16px;
+  line-height: 1.5;
+  opacity: 0;
+  animation: fadeIn 2s ease-in forwards;
+}
+
+.real-letter .words {
+  margin-bottom: 15px;
+}
+
+.real-letter .line1 {
+  animation-delay: 2s;
+}
+
+.real-letter .line2 {
+  animation-delay: 2.5s;
+}
+
+.real-letter .line3 {
+  animation-delay: 3s;
+}
+.real-letter .line4 {
+  animation-delay: 3s;
+}
+.real-letter .line5 {
+  animation-delay: 3s;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Additional mobile optimizations */
+@media (max-width: 768px) {
+  #envelope {
+    margin: 50px auto;
+  }
+
+  .letter-container {
+    padding: 15px;
+  }
+
+  .real-letter {
+    font-size: 15px;
+  }
 }

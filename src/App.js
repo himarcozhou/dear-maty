@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./App.css";
+import { SpeedInsights } from "@vercel/speed-insights/react";
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -88,9 +89,10 @@ function App() {
                   Riflettendo sull'ultima discussione che abbiamo avuto in
                   macchina, so che è stato un momento doloroso per entrambi.
                   Voglio che tu sappia che sto lavorando sulla mia guarigione
-                  sul trovare la pace dentro di me e cercare di represso (cosa
-                  che mi ha impedito di esprimere quello che provo per te al
-                  parco, convinto di farlo per proteggerti da me). <br />
+                  sul trovare la pace dentro di me e cercare di fare meno il
+                  represso (cosa che mi ha impedito di esprimere quello che
+                  provo per te al parco, convinto di farlo per proteggerti da
+                  me). <br />
                   Non voglio che tu ti porta il peso di quello che è successo,
                   perché non è stata colpa tua. <br />
                   <br />
